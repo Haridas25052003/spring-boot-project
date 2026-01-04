@@ -1,21 +1,21 @@
 package com.demo.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
 import com.demo.model.Employee;
 
-@Repository
-public class EmployeeDao {
+public interface EmployeeDao {
 	
-	@Autowired
-	private JdbcTemplate j;
+	int insertEmployee(Employee e);
 	
-	public int insertEmployee(Employee e) {
-		String sql="insert into employee (name ,designation,company,salary) values (?,?,?,?)";
-		
-		return j.update(sql,new Object[] {e.getName(),e.getCompany(),e.getDesignation(),e.getSalary()});
-	}
+	int deleteEmployeeById(int id);
+	
+	Employee findEmployeeById(int id);
+	
+	List<Employee> findEmployee();
+	
+	int updateEmployee(Employee e);
+	
+	
 
 }
